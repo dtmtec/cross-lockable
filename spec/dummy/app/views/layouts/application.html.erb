@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dummy</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="content">
+    <h1>DUI application examples</h1>
+
+    <%= yield %>
+  </div>
+</div>
+
+<%= javascript_include_tag "application" %>
+<%= javascript_include_tag "http://js.pusher.com/2.1/pusher.min.js" %>
+</body>
+</html>
