@@ -12,4 +12,6 @@ Bundler::GemHelper.install_tasks
 
 task :jasmine => 'app:jasmine'
 
-task :default => 'app:jasmine:ci'
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec => [:environment, 'app:db:test:prepare'])
+task :default => :spec
