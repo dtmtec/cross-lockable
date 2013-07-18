@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Session Refreshed</title>
+</head>
+<body>
+  <script>
+    top.postMessage('<%= { message: params[:message].to_s }.to_json.html_safe %>', '<%= request.url.gsub(request.path, '').gsub(request.query_string, '').gsub('?', '') %>')
+  </script>
+</body>
+</html>
