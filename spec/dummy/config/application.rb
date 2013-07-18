@@ -9,7 +9,7 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 Bundler.require
-require "cross-lockable"
+require "cross_lockable"
 
 module Dummy
   class Application < Rails::Application
