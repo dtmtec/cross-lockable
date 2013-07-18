@@ -1,0 +1,100 @@
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/transition";
+@import "compass/css3/box-sizing";
+@import "compass/css3/filter";
+
+$lockScreenBoxWidth: 400px;
+$lockScreenBoxHeight: 250px;
+$overlayZIndex: 1000000;
+
+.cross-lockable-screen {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: $overlayZIndex;
+
+  visibility: hidden;
+  opacity: 0;
+
+  background: transparent image-url('cross_lockable/bg_white_60.png') repeat;
+
+  @include transition(visibility 0.5s ease, opacity 0.5s ease);
+
+  &:after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $overlayZIndex  1;
+  }
+
+  &.cross-lockable-show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .cross-lockable-screen-box {
+    position: absolute;
+    z-index: $overlayZIndex + 2;
+
+    top: 50%;
+    left: 50%;
+
+    margin-top: -$lockScreenBoxHeight / 2;
+    margin-left: -$lockScreenBoxWidth / 2;
+
+    width: $lockScreenBoxWidth;
+    height: $lockScreenBoxHeight;
+
+    border: 1px solid #d6d6d6;
+    background-color: #fff;
+
+    @include box-shadow(0 0 4px 0 rgba(0, 0, 0, 0.2));
+    @include border-radius(4px);
+    @include box-sizing(border-box);
+
+    text-align: center;
+
+    padding: 10px;
+
+    form {
+      margin-top: 15px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    fieldset, .control-group {
+      margin-bottom: 0;
+    }
+
+    .help-block {
+      font-size: 12px;
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      margin: 2px 0 0;
+
+      @include transition(visibility 0.2s ease, opacity 0.2s ease);
+
+      &.hide {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+  }
+
+  iframe {
+    width: 0;
+    height: 0;
+
+    border: none;
+  }
+}
