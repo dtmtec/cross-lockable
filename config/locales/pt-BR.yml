@@ -1,0 +1,5 @@
+# encoding: utf-8
+"pt-BR":
+  lock_screen:
+    errors:
+      invalid_password: Senha inválida.

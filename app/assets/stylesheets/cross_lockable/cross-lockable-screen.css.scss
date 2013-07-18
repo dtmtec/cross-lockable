@@ -78,16 +78,11 @@ $overlayZIndex: 1000000;
     .help-block {
       font-size: 12px;
       display: block;
-      visibility: visible;
+      visibility: hidden;
       opacity: 1;
       margin: 2px 0 0;
 
       @include transition(visibility 0.2s ease, opacity 0.2s ease);
-
-      &.hide {
-        visibility: hidden;
-        opacity: 0;
-      }
     }
   }
 
@@ -96,5 +91,13 @@ $overlayZIndex: 1000000;
     height: 0;
 
     border: none;
+  }
+
+  &.cross-lockable-error {
+    .cross-lockable-screen-box {
+      .help-block {
+        visibility: visible;
+      }
+    }
   }
 }
