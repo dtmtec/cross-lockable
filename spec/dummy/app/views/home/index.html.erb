@@ -1,3 +1,5 @@
 <h1>Cross Lockable</h1>
 
-<%= render_lock_screen url: cross_lockable.users_refresh_session_url, return_to: cross_lockable.users_session_refreshed_url %>
+<%= render_lock_screen scope: current_user,
+                       url: cross_lockable.users_refresh_session_url,
+                       return_to: cross_lockable.users_session_refreshed_url %>

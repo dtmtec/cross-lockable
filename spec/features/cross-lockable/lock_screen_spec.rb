@@ -16,7 +16,7 @@ describe "Lock screen", js: true do
   it "logs user with lock screen" do
     within('.cross-lockable-screen-box') do
       find('input[type="password"]').set(user.password)
-      click_on 'Entrar'
+      click_on t('cross_lockable.button')
     end
 
     visit root_path
@@ -25,8 +25,8 @@ describe "Lock screen", js: true do
 
   it "displays error when there is no password" do
     within('.cross-lockable-screen-box') do
-      click_on 'Entrar'
-      page.should have_content(I18n.t('lock_screen.errors.invalid_password'))
+      click_on t('cross_lockable.button')
+      page.should have_content(t('cross_lockable.errors.invalid_password'))
     end
 
     visit root_path
@@ -36,8 +36,8 @@ describe "Lock screen", js: true do
   it "displays error when there is no password" do
     within('.cross-lockable-screen-box') do
       find('input[type="password"]').set('foo')
-      click_on 'Entrar'
-      page.should have_content(I18n.t('lock_screen.errors.invalid_password'))
+      click_on t('cross_lockable.button')
+      page.should have_content(t('cross_lockable.errors.invalid_password'))
     end
 
     visit root_path

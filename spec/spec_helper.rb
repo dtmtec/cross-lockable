@@ -69,6 +69,7 @@ Spork.each_run do
   Dir[File.join(ENGINE_RAILS_ROOT, "spec/support/**/*.rb")].each { |f| require f }
 
   RSpec.configure do |config|
+    config.include I18nHelper
     config.include FactoryGirl::Syntax::Methods
     config.include Mongoid::Matchers
   end

@@ -1,5 +1,8 @@
 # encoding: utf-8
 "pt-BR":
-  lock_screen:
+  cross_lockable:
+    title: Session locked!
+    description: For security reasons, your session has been expired. Please, type your password below.
+    button: Send
     errors:
-      invalid_password: Senha inválida.
+      invalid_password: Invalid password.

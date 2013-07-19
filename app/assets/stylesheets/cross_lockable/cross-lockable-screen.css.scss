@@ -40,6 +40,12 @@ $overlayZIndex: 1000000;
   }
 
   .cross-lockable-screen-box {
+
+    .input-prepend {
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
     position: absolute;
     z-index: $overlayZIndex + 2;
 

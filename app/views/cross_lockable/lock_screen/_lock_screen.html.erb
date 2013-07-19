@@ -2,15 +2,14 @@
   <div class="cross-lockable-screen-box"></div>
 
   <script type="text/html" data-template-name="cross-lockable-screen">
-    <%= form_for(current_user, url: url, method: :post, html: { target: 'cross-lockable-iframe' }) do |f| %>
+    <%= form_for(scope, url: url, method: :post, html: { target: 'cross-lockable-iframe' }) do |f| %>
 
-      <h2>Sessão travada!</h2>
+      <h2><%= title %></h2>
 
-      <p>Por questões de segurança a aua sessão está travada.</p>
-      <p>Digite sua senha abaixo para destravá-la.</p>
+      <p><%= description %></p>
 
       <fieldset>
-        <%= f.hidden_field :email, value: current_user.email %>
+        <%= f.hidden_field :email, value: scope.email %>
 
         <div class="control-group password">
           <div class="controls">
@@ -19,7 +18,9 @@
 
               <%= f.password_field :password, required: false %>
 
-              <span class="help-block lock-screen-error">Senha inválida.</span>
+              <span class="help-block lock-screen-error">
+                <%= t('cross_lockable.errors.invalid_password') %>
+              </span>
             </div>
           </div>
         </div>
@@ -28,7 +29,7 @@
       <div class= "actions">
         <%= button_tag :submit, class: 'btn btn-success btn-large', data: { disable_with: 'Entrando...' } do %>
           <%= content_tag(:i, nil, class: 'icon-off icon-white') %>
-          <%= 'Entrar' %>
+          <%= t('cross_lockable.button') %>
         <% end -%>
       </div>
     <% end %>
