@@ -5,4 +5,4 @@
     description: For security reasons, your session has been expired. Please, type your password below.
     button: Send
     errors:
-      invalid_password: Invalid password.
+      invalid_password: Invalid password

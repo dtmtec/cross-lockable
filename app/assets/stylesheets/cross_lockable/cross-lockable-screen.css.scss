@@ -100,7 +100,12 @@ $overlayZIndex: 1000000;
   }
 
   &.cross-lockable-error {
+
     .cross-lockable-screen-box {
+      input {
+        background: none repeat scroll 0 0 #FAF2F2;
+      }
+
       .help-block {
         visibility: visible;
       }
