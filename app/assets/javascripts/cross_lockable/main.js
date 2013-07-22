@@ -66,6 +66,14 @@
     isValidSource: function (source) {
       return source == this.iframe.contentWindow
     },
+
+    onKeypress: function (e) {
+      // ctrl + alt + shift + l
+      if (e.ctrlKey && e.shiftKey && e.altKey && e.keyCode == 76) {
+        this.show()
+      }
+    }
+
   })
 
   window.CrossLockable = {
