@@ -21,6 +21,10 @@ module CrossLockable
   def self.origin_url(request)
     request.base_url.gsub(request.query_string, '').gsub('?', '')
   end
+
+  def self.refresh_session_url(host, scope)
+    "#{host}/cross_lockable/#{scope.to_s.downcase.pluralize}/refresh_session"
+  end
 end
 
 require "cross_lockable/engine"

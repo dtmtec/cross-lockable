@@ -60,4 +60,10 @@ describe CrossLockable do
     end
   end
 
+  describe ".refresh_session_url" do
+    it "returns refresh session url" do
+      CrossLockable.refresh_session_url('http://test.com', 'User').should eq "http://test.com/cross_lockable/users/refresh_session"
+    end
+  end
+
 end
