@@ -28,6 +28,19 @@ describe("CrossLockable.ScreenView", function() {
     expect(view.origin).toEqual($element.data('cross-lockable-origin'))
   })
 
+  it("should set the expiration time based on its data-cross-lockable-expiration-time attribute of the view element", function() {
+    view = new CrossLockable.ScreenView({ el: $element })
+    expect(view.expirationTime).toEqual($element.data('cross-lockable-expiration-time'))
+  })
+
+  it("should call the startExpirationCountdown on the initialize", function() {
+    view = new CrossLockable.ScreenView({ el: $element })
+
+    spyOn(view, 'start')
+    view.initialize()
+    expect(view.start).toHaveBeenCalled()
+  })
+
   describe("when it is rendered", function() {
     beforeEach(function() {
       view = new CrossLockable.ScreenView({ el: $element })
@@ -37,6 +50,36 @@ describe("CrossLockable.ScreenView", function() {
       expect($box).toHaveHtml('')
       view.render()
       expect($box).toHaveHtml(template)
+    })
+  })
+
+  describe("when the expiration time has passed", function() {
+    beforeEach(function(){
+      jasmine.Clock.useMock()
+
+      view = new CrossLockable.ScreenView({ el: $element })
+      spyOn(view, 'render')
+      spyOn(view, 'stop')
+    })
+
+    it("opens the lock screen", function() {
+      jasmine.Clock.tick(view.expirationTime)
+      expect(view.render).toHaveBeenCalled()
+    })
+
+    it("clears the expiration time", function() {
+      jasmine.Clock.tick(view.expirationTime)
+      expect(view.stop).toHaveBeenCalled()
+    })
+  })
+
+  describe("when the lock screen is closed", function() {
+    it("starts the expiration countdown again", function() {
+      view = new CrossLockable.ScreenView({ el: $element })
+      spyOn(view, 'start')
+
+      view.hide()
+      expect(view.start).toHaveBeenCalled()
     })
   })
 
@@ -256,5 +299,4 @@ describe("CrossLockable.ScreenView", function() {
       })
     })
   })
-
 })

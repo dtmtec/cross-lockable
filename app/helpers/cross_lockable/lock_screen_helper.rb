@@ -2,12 +2,17 @@ module CrossLockable
   module LockScreenHelper
     def render_lock_screen(options={})
       render 'cross_lockable/lock_screen/lock_screen', {
-        scope: options[:scope],
         url:    CrossLockable.refresh_url_for(options),
         origin: CrossLockable.origin_url(request),
+        scope: options[:scope],
         title: title(options),
-        description: description(options)
+        description: description(options),
+        expiration_time: expiration(options)
       }
+    end
+
+    def expiration(options)
+      options[:expiration_time] || 1800000
     end
 
     def title(options)

@@ -1,31 +1,44 @@
 (function (window, _, Backbone, $) {
-
   var ScreenView = Backbone.View.extend({
 
     initialize: function () {
-      _(this).bindAll('loaded')
+      _(this).bindAll('loaded', 'show')
 
       this.template = this.$("[data-template-name='cross-lockable-screen']").html()
       this.$box     = this.$('.cross-lockable-screen-box')
       this.iframe   = this.$('iframe').get(0)
 
-      this.origin   = this.$el.data('cross-lockable-origin')
+      this.origin         = this.$el.data('cross-lockable-origin')
+      this.expirationTime = this.$el.data('cross-lockable-expiration-time')
+
+      this.start();
+    },
+
+    start: function() {
+      this.timeoutId = setTimeout(this.show, this.expirationTime)
+    },
+
+    stop: function() {
+      clearTimeout(this.timeoutId)
     },
 
     render: function () {
       this.$box.html(this.template)
+      this.$el.addClass('cross-lockable-show')
     },
 
     show: function () {
-      this.render()
-
       $(window).on('message', this.loaded)
-      this.$el.addClass('cross-lockable-show')
+
+      this.render()
+      this.stop()
     },
 
     hide: function () {
       $(window).off('message', this.loaded)
+
       this.$el.removeClass('cross-lockable-show')
+      this.start()
     },
 
     loaded: function (e) {
@@ -35,6 +48,7 @@
         if (data.message == 'success') {
           this.hide()
           this.trigger('cross-lockable:success')
+
         } else {
           this.$el.addClass('cross-lockable-error')
           this.$el.find('.control-group.password').addClass('error')
@@ -51,7 +65,7 @@
 
     isValidSource: function (source) {
       return source == this.iframe.contentWindow
-    }
+    },
   })
 
   window.CrossLockable = {
