@@ -23,24 +23,40 @@ describe "Lock screen", js: true do
     current_path.should eq(root_path)
   end
 
-  it "displays error when there is no password" do
-    within('.cross-lockable-screen-box') do
-      click_on t('cross_lockable.button')
-      page.should have_content(t('cross_lockable.errors.invalid_password'))
-    end
+  context "when there is no password" do
+    it "displays error" do
+      within('.cross-lockable-screen-box') do
+        click_on t('cross_lockable.button')
+        page.should have_content(t('cross_lockable.errors.invalid_password'))
+      end
 
-    visit root_path
-    current_path.should eq(new_user_session_path)
+      visit root_path
+      current_path.should eq(new_user_session_path)
+    end
   end
 
-  it "displays error when there is no password" do
-    within('.cross-lockable-screen-box') do
-      find('input[type="password"]').set('foo')
+  context "when password is wrong" do
+    it "displays error" do
+      within('.cross-lockable-screen-box') do
+        find('input[type="password"]').set('foo')
+        click_on t('cross_lockable.button')
+        page.should have_content(t('cross_lockable.errors.invalid_password'))
+      end
+
+      visit root_path
+      current_path.should eq(new_user_session_path)
+    end
+  end
+
+  context "when security token is invalid" do
+    it "displays error" do
+      page.execute_script("$('#token').val('999999999')")
+
       click_on t('cross_lockable.button')
       page.should have_content(t('cross_lockable.errors.invalid_password'))
-    end
 
-    visit root_path
-    current_path.should eq(new_user_session_path)
+      visit root_path
+      current_path.should eq(new_user_session_path)
+    end
   end
 end

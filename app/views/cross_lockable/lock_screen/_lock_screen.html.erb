@@ -9,6 +9,7 @@
       <p><%= description %></p>
 
       <fieldset>
+        <%= hidden_field_tag :token, CrossLockable::TokenGenerator.generate_security_token %>
         <%= f.hidden_field :email, value: scope.email %>
 
         <div class="control-group password">

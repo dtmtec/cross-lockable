@@ -1,12 +1,14 @@
-require "cross_lockable/engine"
-require "devise"
-
 module CrossLockable
+  autoload :TokenGenerator, 'cross_lockable/token_generator'
+
   mattr_accessor :devise_scopes
   @@devise_scopes = [:user]
 
   mattr_accessor :auth_server_app
   @@auth_server_app = true
+
+  mattr_accessor :lockable_secret
+  @@lockable_secret = ''
 
   def self.auth_server_app?
     auth_server_app == true
@@ -20,3 +22,6 @@ module CrossLockable
     request.base_url.gsub(request.query_string, '').gsub('?', '')
   end
 end
+
+require "cross_lockable/engine"
+require "devise"
