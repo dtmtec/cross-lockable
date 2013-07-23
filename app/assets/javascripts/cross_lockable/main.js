@@ -2,7 +2,7 @@
   var ScreenView = Backbone.View.extend({
 
     initialize: function () {
-      _(this).bindAll('loaded', 'show')
+      _(this).bindAll('loaded', 'show', 'onKeypress')
 
       $(window).on('keydown', this.onKeypress)
 
