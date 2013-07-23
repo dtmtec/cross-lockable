@@ -1,6 +1,7 @@
 class CrossLockable::SessionsController < DeviseController
-  prepend_before_filter :require_no_authentication, :only => [ :new, :create ]
-  prepend_before_filter :allow_params_authentication!, :only => [ :create, :refresh ]
+  prepend_before_filter :allow_params_authentication!, :only => [ :refresh ]
+
+  skip_before_filter :verify_authenticity_token, :only => [ :refresh ]
 
   layout false
 
