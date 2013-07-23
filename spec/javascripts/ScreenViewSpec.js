@@ -295,6 +295,20 @@ describe("CrossLockable.ScreenView", function() {
               expect($form.find('input[type=submit]')).not.toBeDisabled()
             })
           })
+
+          it("cleans value of password input", function() {
+            var $form = $box.find('form'),
+                $field = $form.find('input[type=password]')
+
+            $field.val('test')
+            $iframe.attr('src', messageUrl)
+
+            waitsFor(waitsForFailure, 500)
+
+            runs(function() {
+              expect($field.val()).toEqual('')
+            })
+          })
         })
       })
     })

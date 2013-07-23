@@ -49,11 +49,12 @@
 
         if (data.message == 'success') {
           this.hide()
+          this.$el.removeClass('cross-lockable-error')
           this.trigger('cross-lockable:success')
 
         } else {
+          this.$('input[type=password]').val('')
           this.$el.addClass('cross-lockable-error')
-          this.$el.find('.control-group.password').addClass('error')
           this.trigger('cross-lockable:error')
         }
 
