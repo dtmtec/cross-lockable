@@ -4,6 +4,8 @@
     initialize: function () {
       _(this).bindAll('loaded', 'show')
 
+      $(window).on('keydown', this.onKeypress)
+
       this.template = this.$("[data-template-name='cross-lockable-screen']").html()
       this.$box     = this.$('.cross-lockable-screen-box')
       this.iframe   = this.$('iframe').get(0)
