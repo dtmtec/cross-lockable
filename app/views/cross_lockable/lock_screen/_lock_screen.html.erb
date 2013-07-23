@@ -6,7 +6,7 @@
 
       <h2><%= title %></h2>
 
-      <p><%= description %></p>
+      <p><%= raw description %></p>
 
       <fieldset>
         <%= hidden_field_tag :token, CrossLockable::TokenGenerator.generate_security_token %>
