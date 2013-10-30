@@ -1,5 +1,7 @@
 # Cross Lockable
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dtmtec/cross-lockable/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 Cross Lockable is a component that displays lock screen to re-authenticate an user without reloading the page.
 
 ## Requirements
