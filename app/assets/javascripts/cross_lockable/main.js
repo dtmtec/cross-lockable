@@ -2,7 +2,7 @@
   var ScreenView = Backbone.View.extend({
 
     initialize: function () {
-      _(this).bindAll('loaded', 'show', 'onKeypress')
+      _(this).bindAll('loaded', 'show', 'onKeypress', 'focus')
 
       $(window).on('keydown', this.onKeypress)
 
@@ -27,6 +27,12 @@
     render: function () {
       this.$box.html(this.template)
       this.$el.addClass('cross-lockable-show')
+
+      _(this.focus).delay(500)
+    },
+
+    focus: function () {
+      this.$('input[type=password]').focus()
     },
 
     show: function () {

@@ -1,0 +1,9 @@
+# encoding: utf-8
+"en":
+  cross_lockable:
+    title: Session locked!
+    description: "For security reasons, your session has been expired.<br>Please, type your password below."
+    button: Send
+    button_loading: Sending...
+    errors:
+      invalid_password: Invalid password

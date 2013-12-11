@@ -1,4 +1,4 @@
-<div class="cross-lockable-screen" data-cross-lockable-origin="<%= origin %>" data-cross-lockable-expiration-time="<%= expiration_time %>">
+<div class="cross-lockable-screen hide" data-cross-lockable-origin="<%= origin %>" data-cross-lockable-expiration-time="<%= expiration_time %>">
   <div class="cross-lockable-screen-box"></div>
 
   <script type="text/html" data-template-name="cross-lockable-screen">
@@ -8,28 +8,26 @@
 
       <p><%= raw description %></p>
 
-      <fieldset>
+      <fieldset class="form-group password">
         <%= hidden_field_tag :token, CrossLockable::TokenGenerator.generate_security_token %>
         <%= f.hidden_field :email, value: scope.email %>
 
-        <div class="control-group password">
-          <div class="controls">
-            <div class="input-prepend">
-              <span class="add-on"><i class="icon-asterisk"></i></span>
+        <div class="controls col-xs-offset-1 col-xs-10">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="icon icon-asterisk"></i></span>
 
-              <%= f.password_field :password, required: false %>
-
-              <span class="help-block lock-screen-error">
-                <%= t('cross_lockable.errors.invalid_password') %>
-              </span>
-            </div>
+            <%= f.password_field :password, required: false, class: 'form-control' %>
           </div>
+
+          <span class="help-block lock-screen-error">
+            <%= t('cross_lockable.errors.invalid_password') %>
+          </span>
         </div>
       </fieldset>
 
-      <div class= "actions">
-        <%= button_tag :submit, class: 'btn btn-success btn-large', data: { disable_with: 'Entrando...' } do %>
-          <%= content_tag(:i, nil, class: 'icon-off icon-white') %>
+      <div class="actions">
+        <%= button_tag :submit, class: 'btn btn-success btn-lg', data: { disable_with: t('cross_lockable.button_loading') } do %>
+          <%= content_tag(:i, nil, class: 'icon icon-key') %>
           <%= t('cross_lockable.button') %>
         <% end -%>
       </div>

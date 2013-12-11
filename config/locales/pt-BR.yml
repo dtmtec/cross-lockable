@@ -1,8 +1,9 @@
 # encoding: utf-8
 "pt-BR":
   cross_lockable:
-    title: Session locked!
-    description: "For security reasons, your session has been expired.<br>Please, type your password below."
-    button: Send
+    title: Sessão Bloqueada!
+    description: "Você ficou sem utilizar o sistema por um longo tempo.<br>Por razões de segurança a sua sessão foi bloqueada.<br>Digite sua senha para desbloquear."
+    button: Enviar
+    button_loading: Enviando...
     errors:
-      invalid_password: Invalid password
+      invalid_password: Senha inválida

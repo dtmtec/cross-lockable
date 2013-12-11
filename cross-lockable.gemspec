@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "sass-rails"
   s.add_dependency "compass-rails"
   s.add_dependency "devise"
+  s.add_dependency "bootstrap-sass", "~> 3.0.0"
 
   s.add_development_dependency "rspec-rails"
 end
